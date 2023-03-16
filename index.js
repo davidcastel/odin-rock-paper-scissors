@@ -1,11 +1,13 @@
 let getComputerChoice = () => {
-    let randomChoice = Math.floor(Math.random() * 3);
+    let numberOfChoices = 3;
+    let [rock, paper, scissor] = [0,1,2]
+    let randomChoice = Math.floor(Math.random() * numberOfChoices);
     switch (randomChoice) {
-        case 0:
+        case rock:
             return "Rock";
-        case 1:
+        case paper:
             return "Paper";
-        case 2:
+        case scissor:
         default:
             return "Scissor";
     }
