@@ -39,11 +39,11 @@ let game = () => {
     
     while (i < numberOfRounds) {
         playerAnswer = window.prompt("Please select an option, A) Rock B) Paper C) Scissor\n*Please Type A, B or C. Any other option will become void").toLocaleLowerCase();
-        if ((playerAnswer === "a") || (playerAnswer === "b") || (playerAnswer === "c")) {
+        if (doesPlayerAnswerMatchValidResponse(playerAnswer)) {
             computerAnswer = getComputerChoice();
             winner = playRound(responseDir[playerAnswer], computerAnswer);
-            if (winner == 'Winner') playerScore++;
-            else if (winner == 'Loser') computerScore++;
+            if (isTheRoundWinnerPlayer(winner)) playerScore++;
+            else if (isTheRoundWinnerComputer(winner)) computerScore++;
             i++;
         }
     }
@@ -53,3 +53,12 @@ let game = () => {
 }
 
 console.log(game());
+
+const isTheRoundWinnerComputer = (winner) => { return winner == 'Loser'; }
+
+const isTheRoundWinnerPlayer = (winner) => { return winner == 'Winner'; }
+
+const doesPlayerAnswerMatchValidResponse = (playerAnswer) => { 
+    return (playerAnswer === "a") || (playerAnswer === "b") || (playerAnswer === "c");
+}
+
