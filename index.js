@@ -51,3 +51,5 @@ let game = () => {
     else if (playerScore > computerScore) return `Player is the winner`;
     else return `Computer is the winner`;
 }
+
+console.log(game());
