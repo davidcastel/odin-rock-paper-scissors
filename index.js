@@ -29,26 +29,18 @@ let playRound = (playerSelection, computerSelection) => {
 
 let game = () => {
     let responseDir = {"a" : "rock", "b": "paper", "c": "scissor"}
-    let [playerScore, computerScore] = [0,0];
+    let [playerScore, computerScore, i] = [0,0,0];
     let playerAnswer, computerAnswer, winner;
     
-    for (let i = 0; i < 5; i++) {
+    while (i < 5) {
         playerAnswer = window.prompt("Please select an option, A) Rock B) Paper C) Scissor\n*Please Type A, B or C. Any other option will become void").toLocaleLowerCase();
         if ((playerAnswer === "a") || (playerAnswer === "b") || (playerAnswer === "c")) {
             computerAnswer = getComputerChoice();
             winner = playRound(responseDir[playerAnswer], computerAnswer);
-            switch(winner) {
-                case `Winner`:
-                    playerScore++;
-                    break;
-                case `Loser`:
-                    computerScore++;
-                    break;
-                default:
-                    break;
-            }
+            if (winner == 'Winner') playerScore++;
+            else if (winner == 'Loser') computerScore++;
+            i++;
         }
-        else i--;
     }
     if (playerScore == computerScore) return `There is a tie!`;
     else if (playerScore > computerScore) return `Player is the winner`;
