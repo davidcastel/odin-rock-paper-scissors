@@ -1,7 +1,9 @@
 let getComputerChoice = () => {
-    let numberOfChoices = 3;
-    let [rock, paper, scissor] = [0,1,2]
+    const numberOfChoices = 3;
+    const [rock, paper, scissor] = [0,1,2]
+
     let randomChoice = Math.floor(Math.random() * numberOfChoices);
+
     switch (randomChoice) {
         case rock:
             return "Rock";
