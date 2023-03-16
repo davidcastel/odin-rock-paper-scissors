@@ -16,13 +16,13 @@ let playRound = (playerSelection, computerSelection) => {
     playerSelection=playerSelection.toLowerCase();
     computerSelection=computerSelection.toLowerCase();
 
-    if (playerSelection === computerSelection) return `Tie! ${computerSelection} does not beat ${playerSelection}. Play Again`;
+    if (playerSelection === computerSelection) return `Tie`;
     else if (
         (playerSelection === "rock" && computerSelection === "scissor") ||
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissor" && computerSelection === "paper")
         ) {
-            return `You Win! ${playerSelection} beats ${computerSelection}`;
+            return `Winner`;
         }
-    else return `You Lose! ${computerSelection} beats ${playerSelection}`;
+    else return `Loser`;
 }
