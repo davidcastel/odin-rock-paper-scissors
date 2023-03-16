@@ -33,8 +33,9 @@ let game = () => {
     let responseDir = {"a" : "rock", "b": "paper", "c": "scissor"}
     let [playerScore, computerScore, i] = [0,0,0];
     let playerAnswer, computerAnswer, winner;
+    const numberOfRounds = 5;
     
-    while (i < 5) {
+    while (i < numberOfRounds) {
         playerAnswer = window.prompt("Please select an option, A) Rock B) Paper C) Scissor\n*Please Type A, B or C. Any other option will become void").toLocaleLowerCase();
         if ((playerAnswer === "a") || (playerAnswer === "b") || (playerAnswer === "c")) {
             computerAnswer = getComputerChoice();
