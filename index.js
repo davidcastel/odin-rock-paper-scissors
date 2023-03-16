@@ -22,9 +22,9 @@ let playRound = (playerSelection, computerSelection) => {
 
     if (playerSelection === computerSelection) return `Tie`;
     else if (
-        (playerSelection === "rock" && computerSelection === "scissor") ||
-        (playerSelection === "paper" && computerSelection === "rock") ||
-        (playerSelection === "scissor" && computerSelection === "paper")
+        (isSelectedOptionRock(playerSelection) && isSelectedOptionScissor(computerSelection)) ||
+        (isSelectedOptionPaper(playerSelection) && isSelectedOptionRock(computerSelection)) ||
+        (isSelectedOptionScissor(playerSelection) && isSelectedOptionPaper(computerSelection))
         ) {
             return `Winner`;
         }
@@ -53,6 +53,12 @@ let game = () => {
 }
 
 console.log(game());
+
+const isSelectedOptionRock = (selection) => { return selection === "rock";}
+
+const isSelectedOptionPaper = (selection) => { return selection === "paper";}
+
+const isSelectedOptionScissor = (selection) => { return selection === "scissor";}
 
 const isTheRoundWinnerComputer = (winner) => { return winner == 'Loser'; }
 
