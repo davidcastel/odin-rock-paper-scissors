@@ -31,7 +31,7 @@ let playRound = (playerSelection, computerSelection) => {
     else return `Loser`;
 }
 
-let game = () => {
+let _game = () => {
     let responseDir = {"a" : "rock", "b": "paper", "c": "scissor"}
     let [playerScore, computerScore, i] = [0,0,0];
     let playerAnswer, computerAnswer, winner;
@@ -52,8 +52,8 @@ let game = () => {
     else return `Computer is the winner`;
 }
 
-console.log(game());
 
+// *** Private Methods ***
 const isSelectedOptionRock = (selection) => { return selection === "rock";}
 
 const isSelectedOptionPaper = (selection) => { return selection === "paper";}
