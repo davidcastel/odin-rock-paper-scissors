@@ -52,6 +52,76 @@ let _game = () => {
     else return `Computer is the winner`;
 }
 
+// Global Variables
+const btns = document.querySelectorAll('button[id]');
+const playerTab = document.querySelector('span[id="player"]');
+const computerTab = document.querySelector('span[id="computer"]');
+
+let winner = "";
+let [playerScore, computerScore] = [0, 0];
+let isGameFinished = false;
+
+btns.forEach(btn => btn.addEventListener('click', () => {
+    let playerOption = btn.id;
+
+    winner = playRound(playerOption, getComputerChoice());
+    if (isTheRoundWinnerPlayer(winner)) {
+        playerScore++;
+        playerTab.textContent = playerScore;
+        if (playerScore == 5 || playerScore % 5 == 0) isGameFinished = true;
+    }
+    else if (isTheRoundWinnerComputer(winner)) {
+        computerScore++;
+        computerTab.textContent = computerScore;
+        if (computerScore == 5 || computerScore % 5 == 0) isGameFinished = true;
+    }
+
+    if (isGameFinished && (playerScore % 5 === 0 || computerScore % 5 === 0)) {
+        const announcement = document.createElement('dialog');
+        const main = document.querySelector('main');
+
+        isGameFinished = false;
+
+        btns.forEach(btn => btn.setAttribute('disabled', ''));
+        
+        // style
+        announcement.style.border = 'solid';
+        announcement.style.borderColor = 'black';
+        announcement.style.borderWidth = '2px';
+
+        // Set attribute open
+        announcement.setAttribute("open", "");
+
+        // content
+        let msg = `${playerScore > computerScore ? 'You are' :  'The Computer is'} the Winner! ${playerScore > computerScore ? 'The Computer' :  'You '} Losse`;
+        announcement.textContent = msg;
+
+        const cancel = document.createElement('button');
+        cancel.textContent = "Cancel";
+
+        const accept = document.createElement('button');
+        accept.textContent = "Accept";
+
+        announcement.appendChild(cancel);
+        announcement.appendChild(accept);
+        main.appendChild(announcement);
+
+        cancel.addEventListener('click', () => {
+            announcement.removeAttribute('open');
+            btns.forEach(btn => btn.removeAttribute('disabled'));
+        });
+
+        accept.addEventListener('click', () => {
+            btns.forEach(btn => btn.removeAttribute('disabled'));
+            playerScore = 0;
+            computerScore = 0;
+            playerTab.textContent = playerScore;
+            computerTab.textContent = computerScore;
+            announcement.removeAttribute('open');
+        });
+    }
+}));
+
 
 // *** Private Methods ***
 const isSelectedOptionRock = (selection) => { return selection === "rock";}
